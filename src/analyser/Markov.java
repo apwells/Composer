@@ -20,29 +20,64 @@ public class Markov implements JMC{
 	//private static HashMap<String, MarkovEntry> markovTable = new HashMap<String, MarkovEntry>
 	
 	private static HashMap<String, ArrayList<Note>> markovTable = new HashMap<String, ArrayList<Note>>();
+	String currentPattern = "";
 	
 	/*
 	 *  Tell us the order of the markov you want.
 	 *  Perhaps we return an array of notes/states and probabilities?
 	 */
 	
-	//public Markov(int order, String midiFile) {
-	//}
+	public Markov(int order, String midiFile) {
 	
-	public static void main(String[] args){
-
-    Score theScore = new Score("Temporary score");
-            
-	// read the MIDI files made earlier as input                
-	Read.midi(theScore, "death-note-simplebass.mid");
-	//View.show(theScore);
-	//System.out.println("PHRASE = " + theScore.getPart(0).getPhrase(0).length());
+		Score midiScore = new Score("Temporary score");
+		Read.midi(midiScore, midiFile);
+		generateMarkov(midiScore, order);
+		this.order = order;
+		
+		// Initialise our pattern with a random note from the piece
+		Part part = midiScore.getPart(0);
+		Phrase phrase = part.getPhrase(0);
+		Random rnd = new Random();
+		int note = rnd.nextInt(phrase.getSize());
+		currentPattern = Integer.toString(phrase.getNote(note).getPitch());
+	}
 	
-	//analyse(theScore);
-	generateMarkov(theScore, 1);
-	System.out.println("BUILDING SCORE---");
-	buildTestScore(theScore);
-    }
+	/*
+	 *  Using our current pattern, we look get the next note to use.
+	 */
+	public Note getNext() {
+		
+		while (!markovTable.containsKey(currentPattern)) {	// If we don't have an entry for that pattern.
+			// strip off the first entry in pattern.
+			String [] stripped = currentPattern.split(" ", 2);	// Strips first word.
+			System.out.println("Pattern was '" + currentPattern + "' now its '" + stripped[1]+"'");
+			currentPattern = stripped[1];
+			if (currentPattern.equals("")) {
+				System.out.println("NO PATTERN!");
+				break;
+			}
+		}
+		
+		ArrayList<Note> noteList = markovTable.get(currentPattern);
+		Note addNote = getNextNote(noteList);
+		return addNote;
+		
+	}
+	
+//	public static void main(String[] args){
+//
+//    Score theScore = new Score("Temporary score");
+//            
+//	// read the MIDI files made earlier as input                
+//	Read.midi(theScore, "death-note-simplebass.mid");
+//	//View.show(theScore);
+//	//System.out.println("PHRASE = " + theScore.getPart(0).getPhrase(0).length());
+//	
+//	//analyse(theScore);
+//	generateMarkov(theScore, 1);
+//	System.out.println("BUILDING SCORE---");
+//	buildTestScore(theScore);
+//    }
 	
 	/*
 	 *  This is a recursive function. We start from the highest order and work down

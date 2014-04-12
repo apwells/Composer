@@ -1,6 +1,8 @@
 package context;
 import java.util.Random;
 
+import analyser.Markov;
+
 import jm.JMC;
 import jm.music.data.*;
 import jm.music.tools.*;
@@ -10,6 +12,7 @@ public final class Context implements JMC{
 	
 	String source;
 	public Score theScore;
+	private Markov markov;
 	
 	Note[] noteArray;
 	float variation;
@@ -23,13 +26,13 @@ public final class Context implements JMC{
 	// Later on we should make the source file denote our context variables through some clever analysis of its contents (idea)
 	public Context(String source) {
 		this.source = source;
-		theScore = new Score("ContextScore");
+		this.theScore = new Score("ContextScore");
+		this.markov = new Markov(1, source);
 		
+		// Read.midi(theScore, source);
+		// Part tempPart = theScore.getPart(0);
 		
-		Read.midi(theScore, source);
-		//Part tempPart = theScore.getPart(0);
-		
-		View.show(theScore);
+		// View.show(theScore);
 		
 	}
 	
@@ -46,10 +49,11 @@ public final class Context implements JMC{
 	
 	// Complex algorithm...
 	public Note getNextNote() {
-		Random rnd = new Random();
-		int note = rnd.nextInt(512) % noteArray.length;	// Should mod to size;
-		System.out.println("Note : "+note);
-		return noteArray[note];
+//		Random rnd = new Random();
+//		int note = rnd.nextInt(512) % noteArray.length;	// Should mod to size;
+//		System.out.println("Note : "+note);
+//		return noteArray[note];
+		return markov.getNext();
 	}
 	
 	
