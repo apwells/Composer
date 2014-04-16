@@ -60,6 +60,7 @@ public class Markov implements JMC{
 		
 		ArrayList<Note> noteList = markovTable.get(currentPattern);
 		Note addNote = getNextNote(noteList);
+		currentPattern = currentPattern + " " + Integer.toString(addNote.getPitch());
 		return addNote;
 		
 	}
@@ -69,7 +70,7 @@ public class Markov implements JMC{
 //    Score theScore = new Score("Temporary score");
 //            
 //	// read the MIDI files made earlier as input                
-//	Read.midi(theScore, "death-note-simplebass.mid");
+//	Read.midi(theScore, "death-note-melody.mid");
 //	//View.show(theScore);
 //	//System.out.println("PHRASE = " + theScore.getPart(0).getPhrase(0).length());
 //	
@@ -141,7 +142,7 @@ public class Markov implements JMC{
 		newPhrase.add(phrase.getNote(0));
 		
 		// Let's make a 31 note score
-		for (int x =0; x < 500; x ++) {
+		for (int x =0; x < 20; x ++) {
 			ArrayList<Note> noteList = markovTable.get(pattern);
 			System.out.println("Looking at pattern " + pattern);
 			
@@ -179,12 +180,16 @@ public class Markov implements JMC{
 	 */
 	private static Note getNextNote(ArrayList<Note> noteList) {
 		
-		double p = Math.random();
+		Random rnd = new Random();
+		double p = rnd.nextDouble();
+		System.out.println("RANDOM = " + p);
+		//double p = Math.random();
 		double cumulativeProbability = 0.0;
 		double eachProb = 1.0 / noteList.size();
 		for (Note note : noteList) {
 		    cumulativeProbability += eachProb;
 		    if (p <= cumulativeProbability) {
+		    	
 		        return note;
 		    }
 		}

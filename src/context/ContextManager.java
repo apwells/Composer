@@ -49,6 +49,7 @@ public class ContextManager {
 		
 		// Testing code. Creating manual contexts.
 		c1 = new Context("death-note-melody.mid");
+		c2 = new Context("death-note-simplebass-up1.mid");
 		//c1.Init(0.2f, 1, 0.9f, 0.1f, 0.1f, 0.1f, n1);	// A "peaceful" context
 		//c2 = new Context("empty");
 		//c2.Init(0.5f, 2, 0.6f, 0.2f, 0.5f, 0.5f, n2); 	// Things are happening
