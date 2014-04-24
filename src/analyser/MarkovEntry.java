@@ -7,6 +7,7 @@ import jm.music.data.Note;
 /*
  *  A simple class that defines our Markov table entry. Better than using lots of arraylists
  *  Each entry is formed : Pattern -> Following Notes, Frequency of pattern
+ *  --------DEPRECATED/UNUSED---------
  */
 
 public class MarkovEntry {

@@ -127,7 +127,7 @@ public class Markov implements JMC{
 		
 	}
 	
-	private static void buildTestScore(Score score) {
+	private static void buildTestScore(Score score, String output) {
 		
 		float randomness = 0.1f;
 		
@@ -172,7 +172,7 @@ public class Markov implements JMC{
 		newScore.add(newPart);
 		
 		View.show(newScore);
-		Write.midi(newScore, "simplebass-var1.mid");
+		Write.midi(newScore, output);
 	}
 	
 	/*
