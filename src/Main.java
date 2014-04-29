@@ -18,6 +18,8 @@ public final class Main {
 		contextManager = settings.getContextManager();
 		voiceManager = settings.getVoiceManager();
 		
+		voiceManager.runVoices();
+		
 //		ContextManager cManager = new ContextManager();
 //
 //		ContextThread player1 = new ContextThread(cManager.c1);

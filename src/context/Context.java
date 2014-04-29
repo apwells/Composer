@@ -15,9 +15,44 @@ public final class Context{
 	private int id;
 	private String name;
 
-	public Context(String name, ArrayList<Line> lineList) {
+	public Context(String name, ArrayList<Line> lineList, int id) {
 		this.name = name;
 		this.lineList = lineList;
+		this.id = id;
+		setLineContexts();
+		System.out.println("Context created with id " + id);
+	}
+	
+	private void setLineContexts(){
+		for (Line line : lineList) {
+			line.setContext(this);
+		}
+	}
+	
+	public boolean hasLineByName(String file) {
+		for (Line line : lineList) {
+			if (line.getFile().equals(file)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Line getLineByName(String file) {
+		for (Line line : lineList) {
+			if (line.getFile().equals(file)) {
+				return line;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<Line> getLineList() {
+		return lineList;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

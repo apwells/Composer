@@ -28,7 +28,7 @@ public class Markov implements JMC{
 	 */
 	
 	public Markov(int order, String midiFile) {
-	
+		midiFile = midiFile +".mid";
 		Score midiScore = new Score("Temporary score");
 		Read.midi(midiScore, midiFile);
 		generateMarkov(midiScore, order);
@@ -98,7 +98,7 @@ public class Markov implements JMC{
 				pattern = pattern.trim();	// Remove trailing whitespace
 			}
 			
-			System.out.println("Pattern is " + pattern);
+			// System.out.println("Pattern is " + pattern);
 			
 			//String lastNote = "" + phrase.getNote(x+order-1).getPitch();
 			Note lastNote = phrase.getNote(x+order-1);	// Isn't this simply "this note"
