@@ -14,7 +14,7 @@ public final class Main {
 		ContextManager contextManager;
 		VoiceManager voiceManager;
 		
-		settings = new Settings("Soundtrack1");
+		settings = new Settings("Soundtrack2");
 		contextManager = settings.getContextManager();
 		voiceManager = settings.getVoiceManager();
 		
