@@ -48,14 +48,16 @@ public class Markov implements JMC{
 	public Note getNext() {
 		
 		while (!markovTable.containsKey(currentPattern)) {	// If we don't have an entry for that pattern.
+			System.out.println("Stripping pattern. Currently " + currentPattern);
 			// strip off the first entry in pattern.
-			String [] stripped = currentPattern.split(" ", 2);	// Strips first word.
-			System.out.println("Pattern was '" + currentPattern + "' now its '" + stripped[1]+"'");
-			currentPattern = stripped[1];
 			if (currentPattern.equals("")) {
 				System.out.println("NO PATTERN!");
 				break;
 			}
+			String [] stripped = currentPattern.split(" ", 2);	// Strips first word.
+			System.out.println("Pattern was '" + currentPattern + "' now its '" + stripped[1]+"'");
+			currentPattern = stripped[1];
+
 		}
 		
 		ArrayList<Note> noteList = markovTable.get(currentPattern);
@@ -90,7 +92,7 @@ public class Markov implements JMC{
 		Part part = score.getPart(0);
 		Phrase phrase = part.getPhrase(0);
 		
-		for (int x = 0; x < phrase.length() - order; x++) {	// TODO : What happens if we play the last note... Where do we go from there? Wrap around? Then we need to use some modulus math
+		for (int x = 0; x <= phrase.length() - order; x++) {	// TODO : What happens if we play the last note... Where do we go from there? Wrap around? Then we need to use some modulus math
 			// Generate our pattern string
 			String pattern = "";
 			for (int y = x; y <= x + order-1; y++) {
@@ -98,7 +100,7 @@ public class Markov implements JMC{
 				pattern = pattern.trim();	// Remove trailing whitespace
 			}
 			
-			// System.out.println("Pattern is " + pattern);
+			System.out.println("Pattern is " + pattern);
 			
 			//String lastNote = "" + phrase.getNote(x+order-1).getPitch();
 			Note lastNote = phrase.getNote(x+order-1);	// Isn't this simply "this note"

@@ -9,7 +9,7 @@ import voice.VoiceManager;
 public class ContextManager {
 	
 	private ArrayList<Context> contextList;
-	private ContextDistanceMatrix distanceMatrix;
+	public ContextDistanceMatrix distanceMatrix;
 	
 	public ContextManager(ArrayList<Context> contextList) {
 		this.contextList = contextList;
@@ -60,5 +60,9 @@ public class ContextManager {
 	
 	private Context getContextDistance(Context context) {
 		return null;
+	}
+	
+	public int getNumberOfContexts() {
+		return contextList.size();
 	}
 }

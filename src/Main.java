@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import voice.VoiceManager;
 import midi.MidiSender;
 import context.Context;
@@ -14,11 +16,26 @@ public final class Main {
 		ContextManager contextManager;
 		VoiceManager voiceManager;
 		
-		settings = new Settings("Soundtrack2");
+		settings = new Settings("Soundtrack3");
 		contextManager = settings.getContextManager();
 		voiceManager = settings.getVoiceManager();
 		
 		voiceManager.runVoices();
+		
+		// DELETE THIS BIT. TESTING DISTANCE MATRIX
+		while(true) {
+			contextManager.distanceMatrix.addPercentage(0, 6.6);
+//			Random rnd = new Random();
+//			int size = contextManager.getNumberOfContexts();
+//			contextManager.distanceMatrix.setContext(rnd.nextInt(size), 100);
+			contextManager.distanceMatrix.printMatrix();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 //		ContextManager cManager = new ContextManager();
 //
