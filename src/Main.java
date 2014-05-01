@@ -16,12 +16,41 @@ public final class Main {
 		ContextManager contextManager;
 		VoiceManager voiceManager;
 		
-		settings = new Settings("SoundtrackDemo");
+		//settings = new Settings("SoundtrackDemo");
+		settings = new Settings(args[0]);
 		contextManager = settings.getContextManager();
 		voiceManager = settings.getVoiceManager();
 		
 		voiceManager.runVoices();
 		
+//		while (true) {
+//			try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//			settings.reBuildVoices();
+//			contextManager.contextListener.onMessage("SetContext Danger 99");
+//			
+//			try {
+//			Thread.sleep(9000);
+//		} catch (Exception e) {
+//			
+//		}
+//			settings.reBuildVoices();
+//			contextManager.contextListener.onMessage("SetContext Stealth 99");
+//		}
+		
+//		while (true) {
+//		try {
+//		Thread.sleep(3000);
+//	} catch (InterruptedException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//		settings.reBuildVoices();
+//		}
 		// DELETE THIS BIT. TESTING DISTANCE MATRIX
 //		while(true) {
 //			contextManager.distanceMatrix.addPercentage(0, 6.6);
@@ -38,22 +67,25 @@ public final class Main {
 //		}
 		
 		// Testing using commands
-		while(true) {
-			contextManager.contextListener.onMessage("SetContext Stealth 90");
-			contextManager.distanceMatrix.printMatrix();
-			try {
-				Thread.sleep(9000);
-			} catch (Exception e) {
-				
-			}
-			contextManager.contextListener.onMessage("SetContext Danger 90");
-			contextManager.distanceMatrix.printMatrix();
-			try {
-				Thread.sleep(9000);
-			} catch (Exception e) {
-				
-			}
-		}
+//		while(true) {
+//			contextManager.contextListener.onMessage("SetContext Stealth 100");
+//			contextManager.distanceMatrix.printMatrix();
+//			try {
+//				Thread.sleep(9000);
+//			} catch (Exception e) {
+//				
+//			}
+//			contextManager.contextListener.onMessage("SetContext Danger 100");
+//			contextManager.distanceMatrix.printMatrix();
+//			try {
+//				Thread.sleep(9000);
+//			} catch (Exception e) {
+//				
+//			}
+//		}
+		
+		
+		
 //		ContextManager cManager = new ContextManager();
 //
 //		ContextThread player1 = new ContextThread(cManager.c1);

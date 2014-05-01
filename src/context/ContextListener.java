@@ -33,7 +33,7 @@ public class ContextListener{
 			return;
 		}
 		contextDistanceMatrix.applyCommand(command);
-		System.out.println("ContextListener : Command Applied - " + message);
+		// System.out.println("ContextListener : Command Applied - " + message);
 	}
 
 }

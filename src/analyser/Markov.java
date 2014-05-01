@@ -14,14 +14,14 @@ public class Markov implements JMC{
 	private int order = 3;	// Test at 3
 	private float randomness = 0.1f;	// This will reduce certainty.
 	
-	private static ArrayList<Note> workingList;
+	private ArrayList<Note> workingList;
 	
 	//private static ArrayList<MarkovEntry> markovTable = new ArrayList<MarkovEntry>();	// TODO : This should be a hashmap.
 	//private static HashMap<String, MarkovEntry> markovTable = new HashMap<String, MarkovEntry>
 	
-	private static HashMap<String, ArrayList<Note>> markovTable = new HashMap<String, ArrayList<Note>>();
+	private HashMap<String, ArrayList<Note>> markovTable = new HashMap<String, ArrayList<Note>>();
 	String currentPattern = "";
-	
+	private String midifile;
 	/*
 	 *  Tell us the order of the markov you want.
 	 *  Perhaps we return an array of notes/states and probabilities?
@@ -29,6 +29,7 @@ public class Markov implements JMC{
 	
 	public Markov(int order, String midiFile) {
 		midiFile = midiFile +".mid";
+		this.midifile = midiFile;
 		Score midiScore = new Score("Temporary score");
 		Read.midi(midiScore, midiFile);
 		generateMarkov(midiScore, order);
@@ -85,7 +86,7 @@ public class Markov implements JMC{
 	/*
 	 *  This is a recursive function. We start from the highest order and work down
 	 */
-	private static void generateMarkov(Score score, int order) {
+	private void generateMarkov(Score score, int order) {
 		
 		System.out.println("generatingMarkov order " + order);
 		
@@ -129,7 +130,7 @@ public class Markov implements JMC{
 		
 	}
 	
-	private static void buildTestScore(Score score, String output) {
+	private void buildTestScore(Score score, String output) {
 		
 		float randomness = 0.1f;
 		
@@ -180,25 +181,24 @@ public class Markov implements JMC{
 	/*
 	 *  TODO : No randomness/chance of picking random note from piece introduced yet. Just pure probability
 	 */
-	private static Note getNextNote(ArrayList<Note> noteList) {
+	private Note getNextNote(ArrayList<Note> noteList) {
 		
 		Random rnd = new Random();
 		double p = rnd.nextDouble();
-		System.out.println("RANDOM = " + p);
+		// System.out.println("RANDOM = " + p);
 		//double p = Math.random();
 		double cumulativeProbability = 0.0;
 		double eachProb = 1.0 / noteList.size();
 		for (Note note : noteList) {
 		    cumulativeProbability += eachProb;
 		    if (p <= cumulativeProbability) {
-		    	
 		        return note;
 		    }
 		}
 		return null;	// This should never happen. Throw exception?
 	}
 	
-	private static void analyse(Score score){
+	private void analyse(Score score){
 		
 		workingList = new ArrayList<Note>();
 		

@@ -27,7 +27,7 @@ public class TCPServer extends Thread {
 				DataOutputStream outToClient = new DataOutputStream(
 						connectionSocket.getOutputStream());
 				clientSentence = inFromClient.readLine();
-				System.out.println("Received: " + clientSentence);
+				//System.out.println("Received: " + clientSentence);
 				onMessage(clientSentence);
 				//capitalizedSentence = clientSentence.toUpperCase() + '\n';
 				//outToClient.writeBytes(capitalizedSentence);

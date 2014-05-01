@@ -1,7 +1,6 @@
 package midi;
 
 import jm.JMC; 
-import jm.midi.MidiCommunication;
 import jm.music.data.Note;
 
 
@@ -26,9 +25,9 @@ public class MidiSender extends MidiCommunication implements JMC {
 		// STATUS, CHANNEL, DATA1, DATA2
 		
 		this.sendMidiOutput(144, 0, note.getPitch(), note.getDynamic());
-		// System.out.println("Sent noteon Pitch = " + Integer.toString(note.getPitch()) + ", Dynamic = " + note.getDynamic() + " length = " +Double.toString(note.getDuration()));
+		System.out.println("Sent noteon Pitch = " + Integer.toString(note.getPitch()) + ", Dynamic = " + note.getDynamic() + " length = " +Double.toString(note.getDuration()));
 		try {
-			// System.out.println("sleeping for "+note.getRhythmValue());
+			System.out.println("sleeping for "+note.getRhythmValue());
 			Thread.sleep((long) (note.getDuration()*1000));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
