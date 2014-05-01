@@ -48,14 +48,14 @@ public class Markov implements JMC{
 	public Note getNext() {
 		
 		while (!markovTable.containsKey(currentPattern)) {	// If we don't have an entry for that pattern.
-			System.out.println("Stripping pattern. Currently " + currentPattern);
+			// System.out.println("Stripping pattern. Currently " + currentPattern);
 			// strip off the first entry in pattern.
 			if (currentPattern.equals("")) {
 				System.out.println("NO PATTERN!");
 				break;
 			}
 			String [] stripped = currentPattern.split(" ", 2);	// Strips first word.
-			System.out.println("Pattern was '" + currentPattern + "' now its '" + stripped[1]+"'");
+			// System.out.println("Pattern was '" + currentPattern + "' now its '" + stripped[1]+"'");
 			currentPattern = stripped[1];
 
 		}

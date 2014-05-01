@@ -24,8 +24,10 @@ public final class Context{
 	}
 	
 	private void setLineContexts(){
+		System.out.println("Context " + name + " holds these lines:");
 		for (Line line : lineList) {
 			line.setContext(this);
+			System.out.println(line.getFile());
 		}
 	}
 	
@@ -49,6 +51,10 @@ public final class Context{
 	
 	public ArrayList<Line> getLineList() {
 		return lineList;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public int getId() {
